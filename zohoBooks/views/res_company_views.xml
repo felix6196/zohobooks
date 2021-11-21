@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+		<record id="view_main_organization_tree" model="ir.ui.view">
+			<field name="name">res.pappaya.organization.tree</field>
+			<field name="model">res.company</field>
+			<field name="arch" type="xml">
+				<tree string="Organization" create="false" delete="false">
+					<field name="data_center" />
+					<field name="client_id" />
+					<field name="client_secret" />
+					<field name="redirect_url" />
+					<field name="refresh_token" />
+					<field name="access_token" />
+					<field name="Organization_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_main_organization_form" model="ir.ui.view">
+			<field name="name">res.pappaya.organization.form</field>
+			<field name="model">res.company</field>
+			<field name="inherit_id" ref="base.view_company_form" />
+			<field name="arch" type="xml">
+				<xpath expr='//page[1]' position="after">
+					<page string="ZohoBooks">
+						<group>
+							<group>
+								<field name="data_center" />
+								<field name="client_id" />
+								<field name="client_secret" />
+								<field name="redirect_url" />
+							</group>
+							<group>
+								<field name="refresh_token" />
+								<field name="access_token" />
+								<field name="Organization_id" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Manul Sync" name="Manul_Sync">
+								<group string="Manul Sync">
+									<group>
+										<button name="import_leads" type="object"
+											string="Import Leads" class="oe_highlight" />
+									</group>
+									<group>
+										<button name="export_leads" type="object"
+											string="Export Leads" class="oe_highlight" />
+									</group>
+									<group>
+										<button name="import_contacts" type="object"
+											string="Import Contacts" class="oe_highlight" />
+									</group>
+									<group>
+										<button name="export_contacts" type="object"
+											string="Export Contacts" class="oe_highlight" />
+									</group>
+									<group>
+										<button name="generate_authtoken" type="object"
+											string="Get Token" class="oe_highlight" />
+									</group>
+								</group>
+							</page>
+						</notebook>
+					</page>
+				</xpath>
+			</field>
+		</record>
+
+
+		<record id="action_main_organization_view"
+			model="ir.actions.act_window">
+			<field name="name">Organization</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">res.company</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form,kanban</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to add an Organization.
+				</p>
+			</field>
+		</record>
+
+	</data>
+</odoo>
